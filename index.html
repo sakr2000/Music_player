@@ -9,38 +9,45 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+    <script src="js/music_list.js" defer></script>
+    <script src="js/script.js" defer></script>
   </head>
   <body>
-    <div class="container">
+    <div class="container paused">
       <div class="top-bar">
         <i class="material-icons">expand_more</i>
         <span>Playing now</span>
         <i class="material-icons">more_horiz</i>
       </div>
       <div class="song-image">
-        <img src="assets/andrew-neel-109201-unsplash.jpg" alt="" />
+        <img src="" alt="" />
       </div>
       <div class="song-info">
-        <p class="name">كتاب حياتى يا عين</p>
-        <p class="artist">ميدو صقر</p>
+        <p class="name"></p>
+        <p class="artist"></p>
       </div>
       <div class="progress-area">
         <div class="progress-bar">
           <span></span>
         </div>
       </div>
+      <audio src="" id="audio_player"></audio>
       <div class="time">
         <span class="current">00:26</span>
         <span class="total">03:25</span>
       </div>
       <div class="controller">
-        <i class="material-icons" id="repeat">repeat</i>
-        <i class="material-icons" id="previous">skip_previous</i>
+        <i class="material-icons" id="repeat" title="repeat">repeat</i>
+        <i class="material-icons" id="previous" title="Previous"
+          >skip_previous</i
+        >
         <div class="play-pause">
-          <i class="material-icons">play_arrow</i>
+          <i class="material-icons" title="Play/Pause">play_arrow</i>
         </div>
-        <i class="material-icons" id="next">skip_next</i>
-        <i class="material-icons" id="playlist">queue_music</i>
+        <i class="material-icons" id="next" title="Next">skip_next</i>
+        <i class="material-icons" id="show_playlist" title="Playlist"
+          >queue_music</i
+        >
       </div>
       <div class="playlist">
         <div class="header">
@@ -48,30 +55,9 @@
             <i class="material-icons">queue_music</i>
             <span>Playlist</span>
           </div>
-          <i class="material-icons" id="close_playlist">close</i>
+          <i class="material-icons" id="hide_playlist">close</i>
         </div>
         <ul>
-          <li>
-            <div class="row">
-              <span>song name</span>
-              <p>artist</p>
-            </div>
-            <span class="audio-duration">03:42</span>
-          </li>
-          <li>
-            <div class="row">
-              <span>song name</span>
-              <p>artist</p>
-            </div>
-            <span class="audio-duration">03:42</span>
-          </li>
-          <li>
-            <div class="row">
-              <span>song name</span>
-              <p>artist</p>
-            </div>
-            <span class="audio-duration">03:42</span>
-          </li>
           <li>
             <div class="row">
               <span>song name</span>
