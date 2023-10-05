@@ -9,11 +9,11 @@
 
 :root {
   --white: #fff;
-  --pink: #ff74a4;
-  --violet: #9f6ea3;
+  --pink: #74f6ff;
+  --violet: #7a5691;
   --light-black: #515c6f;
   --dark-white: #cecaca;
-  --pink-shadow: #ffcbdd;
+  --pink-shadow: #cbfaff;
   --light-shadow: rgba(0, 0, 0, 0.15);
 }
 
@@ -22,10 +22,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  background: radial-gradient(var(--pink) 0%, var(--violet) 100%);
 }
 
 .container {
-  width: 350px;
+  width: clamp(300px, 50vw, 550px);
   padding: 20px 30px;
   background-color: var(--white);
   border-radius: 15px;
@@ -53,6 +54,7 @@ body {
 }
 .container i {
   cursor: pointer;
+  user-select: none;
 }
 .song-image {
   height: 250px;
@@ -115,6 +117,7 @@ body {
 }
 .controller {
   display: flex;
+  position: relative;
   margin: 10px 0 5px 0;
 }
 .controller i {
@@ -163,6 +166,41 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
+.controller .volume-bar {
+  position: absolute;
+  width: 20px;
+  height: 90px;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 6px 15px var(--light-shadow);
+  bottom: -10%;
+  pointer-events: none;
+  right: 2%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease-out;
+  opacity: 0;
+}
+.controller i[title="volume"]:hover ~ .volume-bar,
+.controller .volume-bar:hover {
+  opacity: 1;
+  pointer-events: all;
+  bottom: 68%;
+  right: 2%;
+}
+.controller .volume-bar input {
+  width: 75px;
+  border-radius: inherit;
+  background: #cecaca;
+  color: #7a5691;
+  cursor: pointer;
+  opacity: 0.8;
+  rotate: -90deg;
+}
+.controller .volume-bar input:focus {
+  outline: none;
+}
 .playlist {
   position: absolute;
   width: 100%;
@@ -209,6 +247,15 @@ body {
   border-bottom: 1px solid #e5e5e5;
   cursor: pointer;
 }
+.playlist ul li.playing {
+  color: #0077ffb4;
+}
+.playlist ul li.playing .audio-duration {
+  display: none;
+}
+.playlist ul li.playing .playing-bars {
+  display: flex;
+}
 .playlist ul li:last-child {
   border-bottom: none;
 }
@@ -220,4 +267,62 @@ body {
 }
 ul li .audio-duration {
   font-size: 16px;
+}
+
+.playing-bars {
+  position: relative;
+  display: none;
+  justify-content: space-between;
+  width: 13px;
+  height: 13px;
+}
+.playing-bars span {
+  width: 3px;
+  height: 100%;
+  background-color: #0077ffb4;
+  border-radius: 3px;
+  transform-origin: bottom;
+  animation: bounce 2.2s ease infinite alternate;
+  content: "";
+}
+.playing-bars::after {
+  content: "Playing";
+  position: absolute;
+  font-size: 14px;
+  width: max-content;
+  right: 150%;
+  top: -3px;
+}
+.playing-bars span:nth-child(2) {
+  animation-delay: -2.2s;
+}
+.playing-bars span:nth-child(3) {
+  animation-delay: -2.2s;
+}
+
+@keyframes bounce {
+  10% {
+    transform: scaleY(0.3);
+  }
+  30% {
+    transform: scaleY(1);
+  }
+  60% {
+    transform: scaleY(0.5);
+  }
+  80% {
+    transform: scaleY(0.75);
+  }
+  100% {
+    transform: scaleY(0.6);
+  }
+}
+@media (max-width: 770px) {
+  .controller .volume-bar {
+    right: 3%;
+  }
+  .controller i[title="volume"]:hover ~ .volume-bar,
+  .controller .volume-bar:hover {
+    right: 3%;
+  }
 }

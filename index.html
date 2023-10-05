@@ -17,7 +17,9 @@
       <div class="top-bar">
         <i class="material-icons">expand_more</i>
         <span>Playing now</span>
-        <i class="material-icons">more_horiz</i>
+        <i class="material-icons" id="show_playlist" title="Playlist"
+          >queue_music</i
+        >
       </div>
       <div class="song-image">
         <img src="" alt="" />
@@ -45,9 +47,17 @@
           <i class="material-icons" title="Play/Pause">play_arrow</i>
         </div>
         <i class="material-icons" id="next" title="Next">skip_next</i>
-        <i class="material-icons" id="show_playlist" title="Playlist"
-          >queue_music</i
-        >
+        <i class="material-icons" title="volume">volume_up</i>
+        <div class="volume-bar">
+          <input
+            type="range"
+            min="0"
+            max="100"
+            step="2"
+            value="100"
+            id="volume"
+          />
+        </div>
       </div>
       <div class="playlist">
         <div class="header">
@@ -57,36 +67,7 @@
           </div>
           <i class="material-icons" id="hide_playlist">close</i>
         </div>
-        <ul>
-          <li>
-            <div class="row">
-              <span>song name</span>
-              <p>artist</p>
-            </div>
-            <span class="audio-duration">03:42</span>
-          </li>
-          <li>
-            <div class="row">
-              <span>song name</span>
-              <p>artist</p>
-            </div>
-            <span class="audio-duration">03:42</span>
-          </li>
-          <li>
-            <div class="row">
-              <span>song name</span>
-              <p>artist</p>
-            </div>
-            <span class="audio-duration">03:42</span>
-          </li>
-          <li>
-            <div class="row">
-              <span>song name</span>
-              <p>artist</p>
-            </div>
-            <span class="audio-duration">03:42</span>
-          </li>
-        </ul>
+        <ul></ul>
       </div>
     </div>
   </body>

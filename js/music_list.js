@@ -23,4 +23,10 @@ let allSongs = [
     img_src: "assets/images/img-4.jpg",
     audio_src: "assets/audio/audio-4.mp3",
   },
+  {
+    name: "سورة الفيل ",
+    artist: "مشارى العفاسى",
+    img_src: "assets/images/img-5.jpg",
+    audio_src: "assets/audio/audio-5.mp3",
+  },
 ];

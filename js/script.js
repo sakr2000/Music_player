@@ -17,7 +17,7 @@ let container = document.querySelector(".container"),
   playPauseBtn = container.querySelector(".play-pause");
 
 // options variables
-let currentSongIndex = 2;
+let currentSongIndex = Math.floor(Math.random() * allSongs.length);
 
 // load song information
 function loadSong(index) {
@@ -25,6 +25,7 @@ function loadSong(index) {
   songArtist.innerHTML = allSongs[index].artist;
   songImg.src = allSongs[index].img_src;
   audioElement.src = allSongs[index].audio_src;
+  playingNow();
 }
 window.addEventListener("load", () => {
   loadSong(currentSongIndex);
@@ -45,6 +46,21 @@ function pauseSong() {
   audioElement.pause();
   playPauseBtn.querySelector("i").innerText = "play_arrow";
 }
+// play/pause when space key is pressed
+document.addEventListener(
+  "keyup",
+  (event) => {
+    let isPaused = container.classList.contains("paused");
+    var code = event.code;
+
+    if (code == "Space" && isPaused) {
+      playSong();
+    } else if (code == "Space" && !isPaused) {
+      pauseSong();
+    }
+  },
+  false
+);
 // precious button click event
 function PreviousSong() {
   currentSongIndex == 0
@@ -132,7 +148,6 @@ audioElement.addEventListener("timeupdate", (event) => {
   // update current time
   let totalMin = Math.floor(currentTime / 60);
   let totalSec = Math.floor(currentTime % 60);
-  totalMin = totalMin < 10 ? `0${totalMin}` : totalMin;
   totalSec = totalSec < 10 ? `0${totalSec}` : totalSec;
   songCurrentTime.innerHTML = `${totalMin}:${totalSec}`;
 });
@@ -141,7 +156,6 @@ audioElement.addEventListener("loadeddata", () => {
   let audioDuration = audioElement.duration;
   let totalMin = Math.floor(audioDuration / 60);
   let totalSec = Math.floor(audioDuration % 60);
-  totalMin = totalMin < 10 ? `0${totalMin}` : totalMin;
   totalSec = totalSec < 10 ? `0${totalSec}` : totalSec;
   songTotalDuration.innerHTML = `${totalMin}:${totalSec}`;
 });
@@ -156,4 +170,60 @@ showPlaylistBtn.addEventListener("click", () => {
 });
 hidePlaylistBtn.addEventListener("click", () => {
   playlist.classList.toggle("show");
+});
+
+// add playlist songs
+let ulTag = container.querySelector(".playlist ul");
+for (let i = 0; i < allSongs.length; i++) {
+  let tempLi = `          
+  <li>
+  <div class="row">
+    <span>${allSongs[i].name}</span>
+    <p>${allSongs[i].artist}</p>
+  </div>
+  <audio src="${allSongs[i].audio_src}" id="liAudio-${i}"></audio>
+  <span class="audio-duration" id="liAudioDuration_${i}">03:42</span>
+  <div class="playing-bars">
+  <span> </span>
+  <span> </span>
+  <span> </span>
+</div>
+</li>`;
+  ulTag.insertAdjacentHTML("beforeend", tempLi);
+
+  let liAudio = ulTag.querySelector(`#liAudio-${i}`);
+  liAudio.addEventListener("loadeddata", () => {
+    let audioDuration = liAudio.duration;
+    let totalMin = Math.floor(audioDuration / 60);
+    let totalSec = Math.floor(audioDuration % 60);
+    totalSec = totalSec < 10 ? `0${totalSec}` : totalSec;
+    ulTag.querySelector(
+      `#liAudioDuration_${i}`
+    ).innerHTML = `${totalMin}:${totalSec}`;
+  });
+}
+// playlist items click event
+let liArray = ulTag.querySelectorAll("li");
+liArray.forEach((Element, index) => {
+  Element.addEventListener("click", () => {
+    currentSongIndex = index;
+    loadSong(currentSongIndex);
+    playSong();
+  });
+});
+// show the playing song in the playlist
+function playingNow() {
+  for (let i = 0; i < liArray.length; i++) {
+    if (i == currentSongIndex) {
+      liArray[i].classList.add("playing");
+    }
+    if (liArray[i].classList.contains("playing") && i != currentSongIndex) {
+      liArray[i].classList.remove("playing");
+    }
+  }
+}
+// song volume change
+let volumeBar = container.querySelector(".volume-bar #volume");
+volumeBar.addEventListener("change", (e) => {
+  audioElement.volume = e.target.value / 100;
 });
