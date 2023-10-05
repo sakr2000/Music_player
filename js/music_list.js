@@ -1,3 +1,4 @@
+//  All songs details opject
 let allSongs = [
   {
     name: "سورة القيامة",

@@ -35,17 +35,20 @@ playPauseBtn.addEventListener("click", () => {
   let isPaused = container.classList.contains("paused");
   isPaused ? playSong() : pauseSong();
 });
-
+// play loaded song
 function playSong() {
   container.classList.remove("paused");
   audioElement.play();
   playPauseBtn.querySelector("i").innerText = "pause";
 }
+
+// pause loaded song
 function pauseSong() {
   container.classList.add("paused");
   audioElement.pause();
   playPauseBtn.querySelector("i").innerText = "play_arrow";
 }
+
 // play/pause when space key is pressed
 document.addEventListener(
   "keyup",
@@ -61,6 +64,7 @@ document.addEventListener(
   },
   false
 );
+
 // precious button click event
 function PreviousSong() {
   currentSongIndex == 0
@@ -73,6 +77,7 @@ previousBtn.addEventListener("click", () => {
   pauseSong();
   updateProgressBar(0, 5);
 });
+
 // next button click event
 function nextSong() {
   currentSongIndex == allSongs.length - 1
@@ -114,6 +119,7 @@ repeatBtn.addEventListener("click", () => {
       break;
   }
 });
+
 // repeat events
 audioElement.addEventListener("ended", () => {
   let buttonValue = repeatBtn.innerText;
@@ -151,6 +157,7 @@ audioElement.addEventListener("timeupdate", (event) => {
   totalSec = totalSec < 10 ? `0${totalSec}` : totalSec;
   songCurrentTime.innerHTML = `${totalMin}:${totalSec}`;
 });
+
 // display song total time
 audioElement.addEventListener("loadeddata", () => {
   let audioDuration = audioElement.duration;
@@ -202,6 +209,7 @@ for (let i = 0; i < allSongs.length; i++) {
     ).innerHTML = `${totalMin}:${totalSec}`;
   });
 }
+
 // playlist items click event
 let liArray = ulTag.querySelectorAll("li");
 liArray.forEach((Element, index) => {
@@ -211,6 +219,7 @@ liArray.forEach((Element, index) => {
     playSong();
   });
 });
+
 // show the playing song in the playlist
 function playingNow() {
   for (let i = 0; i < liArray.length; i++) {
@@ -222,6 +231,7 @@ function playingNow() {
     }
   }
 }
+
 // song volume change
 let volumeBar = container.querySelector(".volume-bar #volume");
 volumeBar.addEventListener("change", (e) => {
