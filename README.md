@@ -24,7 +24,7 @@ Skills Required – HTML, CSS, JavaScript.
 - Play_next & play_previous.
 - Seek forward and backward using progress bar.
 - Playlist repeat / song repeat / shuffle playback.
-- Play spacific song from playlist.
+- Play specific song from playlist.
 - Control audio volume level.
 
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
