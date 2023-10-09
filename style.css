@@ -9,11 +9,11 @@
 
 :root {
   --white: #fff;
-  --pink: #74f6ff;
+  --light-blue: #74f6ff;
   --violet: #7a5691;
   --light-black: #515c6f;
   --dark-white: #cecaca;
-  --pink-shadow: #cbfaff;
+  --light-blue-shadow: #cbfaff;
   --light-shadow: rgba(0, 0, 0, 0.15);
 }
 
@@ -22,7 +22,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(var(--pink) 0%, var(--violet) 100%);
+  background: radial-gradient(var(--light-blue) 0%, var(--violet) 100%);
 }
 
 .container {
@@ -63,11 +63,14 @@ body {
   margin-top: 20px;
   box-shadow: 0 6px 15px var(--light-shadow);
   overflow: hidden;
+  background-size: cover;
+  background-position: center;
 }
 .song-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 .song-info {
   color: var(--light-black);
@@ -92,7 +95,11 @@ body {
   width: 0;
   height: inherit;
   border-radius: inherit;
-  background: linear-gradient(to right, var(--pink) 0%, var(--violet) 100%);
+  background: linear-gradient(
+    to right,
+    var(--light-blue) 0%,
+    var(--violet) 100%
+  );
   position: relative;
 }
 .progress-bar::before {
@@ -123,7 +130,7 @@ body {
 .controller i {
   font-size: 25px;
   user-select: none;
-  background: linear-gradient(var(--pink) 0%, var(--violet) 100%);
+  background: linear-gradient(var(--light-blue) 0%, var(--violet) 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -147,7 +154,7 @@ body {
   justify-content: center;
   background: linear-gradient(var(--white) 0%, var(--dark-white) 100%);
   border-radius: 50%;
-  box-shadow: 0 0 5px var(--pink);
+  box-shadow: 0 0 5px var(--light-blue);
 }
 
 .play-pause::before {
@@ -155,7 +162,7 @@ body {
   position: absolute;
   width: 45px;
   height: 45px;
-  background: linear-gradient(var(--pink) 0%, var(--violet) 100%);
+  background: linear-gradient(var(--light-blue) 0%, var(--violet) 100%);
   border-radius: inherit;
 }
 .play-pause i {

@@ -1,5 +1,6 @@
 // load needed Dom elements
 let container = document.querySelector(".container"),
+  songImgBox = container.querySelector(".song-image"),
   songImg = container.querySelector(".song-image img"),
   songName = container.querySelector(".song-info .name"),
   songArtist = container.querySelector(".song-info .artist"),
@@ -21,10 +22,12 @@ let currentSongIndex = Math.floor(Math.random() * allSongs.length);
 
 // load song information
 function loadSong(index) {
+  songImgBox.style.backgroundImage = `url(${allSongs[index].img_src}-small.jpg)`;
+  songImg.src = "";
   songName.innerHTML = allSongs[index].name;
   songArtist.innerHTML = allSongs[index].artist;
-  songImg.src = allSongs[index].img_src;
   audioElement.src = allSongs[index].audio_src;
+  songImg.src = `${allSongs[index].img_src}.jpg`;
   playingNow();
 }
 window.addEventListener("load", () => {
